@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppBar from "./components/AppBar";
+import Drawer from "./components/Drawer";
+import Main from "./components/Main";
+import {makeStyles} from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles(theme => ({
+    root:{
+        display:'flex'
+    }
+}));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    const classes = useStyles()
+return (
+    <div className={classes.root}>
+        <AppBar/>
+        <Drawer/>
+        <Main/>
     </div>
-  );
+)
 }
 
 export default App;
