@@ -1,6 +1,6 @@
 import React from 'react';
-import AppBar from "./components/AppBar";
-import Drawer from "./components/Drawer";
+import AppBar from "./components/Header";
+import Drawer from "./components/LeftBar";
 import Main from "./components/Main";
 import {makeStyles} from "@material-ui/core/styles";
 

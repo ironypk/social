@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function () {
+export default function Main () {
     const classes = useStyles()
     return (
         <main className={classes.content}>

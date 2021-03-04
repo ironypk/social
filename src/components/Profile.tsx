@@ -1,18 +1,15 @@
 import React from 'react'
-import {} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
+import MyPosts from './MyPosts';
 
 
 const useStyles = makeStyles(theme => ({}));
 
 
-export default function () {
+export default function Profile() {
     return (
         <div>
-            <div>ava</div>
-            <div>birthday</div>
-            <div>education</div>
-            <div>website</div>
+            <MyPosts/>
         </div>
     )
 }
