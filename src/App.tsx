@@ -1,7 +1,7 @@
 import React from 'react';
-import AppBar from "./components/AppBar";
-import Drawer from "./components/Drawer";
-import Main from "./components/Main";
+import AppBar from "./components/Header/Header";
+import Drawer from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
 import {makeStyles} from "@material-ui/core/styles";
 
 
@@ -17,7 +17,7 @@ return (
     <div className={classes.root}>
         <AppBar/>
         <Drawer/>
-        <Main/>
+        <Profile/>
     </div>
 )
 }
