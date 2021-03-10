@@ -1,7 +1,7 @@
 import React from 'react'
 import {Toolbar} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
-import Profile from "./Profile";
+import Posts from './Posts/Posts';
 
 
 const useStyles = makeStyles(theme => ({
@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Main () {
+export default function Profile () {
     const classes = useStyles()
     return (
         <main className={classes.content}>
             <Toolbar/>
-            <Profile/>
+            <Posts/>
         </main>
 
     )

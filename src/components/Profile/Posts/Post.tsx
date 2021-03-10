@@ -4,7 +4,7 @@ import {Avatar, Badge, Card, CardContent, IconButton, Typography} from '@materia
 import {AccountCircle, ThumbDown, ThumbUpAlt} from '@material-ui/icons';
 import {green, red} from '@material-ui/core/colors'
 import {withStyles} from '@material-ui/styles';
-import { LikesType } from './MyPosts';
+import { LikesType } from './Posts';
 
 
 const useStyles = makeStyles(theme => ({

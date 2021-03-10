@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function LeftBar() {
+export default function Navbar() {
     const drawerListItem: Array<string> = ['Profile', 'Messages', 'News', 'Music', 'Settings']
     const classes = useStyles()
     return (

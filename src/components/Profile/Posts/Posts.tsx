@@ -46,7 +46,7 @@ export type LikesType = {
     dislike:number
 }
 
-export default function MyPosts() {
+export default function Posts() {
     const classes = useStyles()
     return (
         <div>
