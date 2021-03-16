@@ -1,24 +1,15 @@
 import React from 'react'
-import {Toolbar} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
 import Posts from './Posts/Posts';
+import ProfileInfo from './ProfileInfo';
+import {ProfilePageType} from '../../index';
 
-
-const useStyles = makeStyles(theme => ({
-    content:{
-        flexGrow:1,
-        padding:theme.spacing(3)
-    }
-}));
-
-
-export default function Profile () {
-    const classes = useStyles()
+const Profile:React.FC<ProfilePageType>= (props) =>{
     return (
-        <main className={classes.content}>
-            <Toolbar/>
-            <Posts/>
-        </main>
-
+        <div>
+            <ProfileInfo/>
+            <Posts posts={props.posts}/>
+        </div>
     )
 }
+
+export  default Profile
