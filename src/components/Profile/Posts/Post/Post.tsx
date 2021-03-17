@@ -1,10 +1,9 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles';
 import {Avatar, Badge, Card, CardContent, IconButton, Typography} from '@material-ui/core';
-import {AccountCircle, ThumbDown, ThumbUpAlt} from '@material-ui/icons';
-import {green, red} from '@material-ui/core/colors'
+import {AccountCircle, ThumbUpAlt} from '@material-ui/icons';
+import {green} from '@material-ui/core/colors'
 import {withStyles} from '@material-ui/styles';
-import {PostType} from '../../../../index';
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,7 +35,13 @@ const StyledBadge = withStyles(() => ({
     },
 }))(Badge);
 
-const Post:React.FC<PostType> = (props) => {
+
+type PostPropsType  = {
+    message:string
+    likes:number
+}
+
+const Post:React.FC<PostPropsType> = (props) => {
     const classes = useStyles()
     return(
         <Card className={classes.root}>

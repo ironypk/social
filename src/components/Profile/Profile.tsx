@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from './Posts/Posts';
 import ProfileInfo from './ProfileInfo';
-import {ProfilePageType} from '../../index';
+import {ProfilePageType} from '../../redux';
 
 const Profile:React.FC<ProfilePageType>= (props) =>{
     return (
