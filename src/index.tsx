@@ -4,13 +4,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {CssBaseline} from '@material-ui/core'
 import {StylesProvider} from '@material-ui/styles'
+import {BrowserRouter} from 'react-router-dom';
+import {state} from './redux';
 
 ReactDOM.render(
     <React.StrictMode>
-        <StylesProvider injectFirst>
-            <CssBaseline/>
-            <App/>
-        </StylesProvider>
+        <BrowserRouter>
+            <StylesProvider injectFirst>
+                <CssBaseline/>
+                <App {...state}></App>
+            </StylesProvider>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

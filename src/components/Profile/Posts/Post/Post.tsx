@@ -1,10 +1,9 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles';
 import {Avatar, Badge, Card, CardContent, IconButton, Typography} from '@material-ui/core';
-import {AccountCircle, ThumbDown, ThumbUpAlt} from '@material-ui/icons';
-import {green, red} from '@material-ui/core/colors'
+import {AccountCircle, ThumbUpAlt} from '@material-ui/icons';
+import {green} from '@material-ui/core/colors'
 import {withStyles} from '@material-ui/styles';
-import { LikesType } from './Posts';
 
 
 const useStyles = makeStyles(theme => ({
@@ -37,13 +36,12 @@ const StyledBadge = withStyles(() => ({
 }))(Badge);
 
 
-type PostPropsType = {
+type PostPropsType  = {
     message:string
-    likes:LikesType
+    likes:number
 }
 
-
-export default function Post (props:PostPropsType) {
+const Post:React.FC<PostPropsType> = (props) => {
     const classes = useStyles()
     return(
         <Card className={classes.root}>
@@ -55,13 +53,8 @@ export default function Post (props:PostPropsType) {
                 <Typography>{props.message}</Typography>
                 <div className={classes.controls}>
                     <IconButton>
-                        <StyledBadge badgeContent={props.likes.like}>
+                        <StyledBadge badgeContent={props.likes}>
                             <ThumbUpAlt style={{color:green[600]}}/>
-                        </StyledBadge>
-                    </IconButton>
-                    <IconButton>
-                        <StyledBadge badgeContent={props.likes.dislike}>
-                            <ThumbDown style={{color:red[600]}}/>
                         </StyledBadge>
                     </IconButton>
                 </div>
@@ -69,3 +62,5 @@ export default function Post (props:PostPropsType) {
         </Card>
     )
 }
+
+export default Post
