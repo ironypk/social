@@ -25,7 +25,7 @@ const App: React.FC<StateType> = (props) => {
     return (
         <div className={classes.root}>
             <Header/>
-            <Navbar sideBar={props.sideBar}/>
+            <Navbar routes={props.sideBar.routes} friends={props.sideBar.friends}/>
             <main className={classes.content}>
                 <Toolbar/>
                 <Route path='/profile' exact render={() => <Profile posts={props.profilePage.posts}/>}/>
