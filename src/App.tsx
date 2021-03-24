@@ -28,10 +28,10 @@ const App: React.FC<StateType> = (props) => {
             <Navbar routes={props.sideBar.routes} friends={props.sideBar.friends}/>
             <main className={classes.content}>
                 <Toolbar/>
-                <Route path='/profile' exact render={() => <Profile posts={props.profilePage.posts}/>}/>
+                <Route path='/profile' exact render={() => <Profile posts={props.profilePage.posts} profileInfo={props.profilePage.profileInfo}/>}/>
                 <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
                                                               messages={props.dialogsPage.messages}/>}/>
-                <Route path='/' exact render={() => <Profile posts={props.profilePage.posts}/>}/>
+                <Route path='/' exact render={() => <Profile posts={props.profilePage.posts} profileInfo={props.profilePage.profileInfo}/>}/>
             </main>
         </div>
     )

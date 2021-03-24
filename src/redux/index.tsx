@@ -4,6 +4,13 @@ export type DialogType = {
     id: string,
     name: string
 }
+export type ProfileInfoType = {
+    fullName:string
+    city:string
+    about:string
+    avatar:string
+}
+
 export type PostType = {
     id: string,
     likes: number,
@@ -20,11 +27,12 @@ export type DialogsPageType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    profileInfo:ProfileInfoType
 }
 
 export type FriendType = {
-    id: string,
-    name: string,
+    id: string
+    name: string
     image: string
 }
 export type RoutesType = {
@@ -33,7 +41,7 @@ export type RoutesType = {
 
 export type SideBarType = {
     routes : Array<RoutesType>
-    friends: Array<FriendType>
+    friends?: Array<FriendType>
 }
 
 export type StateType = {
@@ -74,17 +82,13 @@ export const state: StateType = {
             id: v1(),
             likes: 10,
             message: 'Коронавирус это плохо'
-        },
-            {
-                id: v1(),
-                likes: 7,
-                message: 'Я люблю клубнику'
-            },
-            {
-                id: v1(),
-                likes: 1,
-                message: 'Пеку пирожки'
-            }]
+        }],
+        profileInfo:{
+            fullName:'Иванов Иван Иванович',
+            city:'Москва',
+            about:'Programmer',
+            avatar:'И'
+        }
     },
     sideBar: {
         routes : [

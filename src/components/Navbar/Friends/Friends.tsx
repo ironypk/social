@@ -1,10 +1,10 @@
 import React from 'react'
 import {Avatar, Box, Grid} from '@material-ui/core';
-import {FriendType} from '../../redux';
+import {FriendType} from '../../../redux';
 import {makeStyles} from '@material-ui/core/styles';
 
-type FriendsPropsType = {
-    friends : Array<FriendType>
+export type FriendsPropsType = {
+    friends? : Array<FriendType>
 }
 
 const useStyles = makeStyles(theme => ({
@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
 
 const Friends:React.FC<FriendsPropsType> = ({friends}) => {
     const classes = useStyles()
-    return <Grid container spacing={1} direction='row' justify='space-between' className={classes.gridContainer}>
-        {friends.map(friend => {
+    return <Grid container spacing={1} direction='row' className={classes.gridContainer}>
+        {friends && friends.map(friend => {
             return (
                 <Grid item xs={4}>
                     <Box display='flex' justifyContent='center'>

@@ -4,6 +4,7 @@ import {Avatar, Badge, Card, CardContent, IconButton, Typography} from '@materia
 import {AccountCircle, ThumbUpAlt} from '@material-ui/icons';
 import {green} from '@material-ui/core/colors'
 import {withStyles} from '@material-ui/styles';
+import {PostType} from '../../../../redux';
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,12 +37,7 @@ const StyledBadge = withStyles(() => ({
 }))(Badge);
 
 
-type PostPropsType  = {
-    message:string
-    likes:number
-}
-
-const Post:React.FC<PostPropsType> = (props) => {
+const Post:React.FC<PostType> = (props) => {
     const classes = useStyles()
     return(
         <Card className={classes.root}>
