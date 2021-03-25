@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Box, Grid, ListItem, ListItemText, makeStyles, Typography, } from '@material-ui/core';
+import {Avatar, Box, Grid, List, ListItem, ListItemText, makeStyles, Typography,} from '@material-ui/core';
 import {MessageType} from '../../../redux';
 import clsx from 'clsx'
 
@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme) => ({
         borderRadius: '5px 5px 5px 0px',
         margin:'0 0 0 5px',
         position: 'relative',
-        background: theme.palette.secondary.dark,
+        background: theme.palette.primary.main,
         opacity: '.5',
         color: '#fff',
         '&::after': {
@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
             width: 15,
             height: 15,
             left: -14,
-            background: `radial-gradient(circle at 0 0,rgba(0,0,0,0) 15px, ${theme.palette.secondary.dark} 0)`
+            background: `radial-gradient(circle at 0 0,rgba(0,0,0,0) 15px, ${theme.palette.primary.main} 0)`
         }
     },
     you:{
@@ -38,7 +38,7 @@ const useStyle = makeStyles((theme) => ({
             '&::after':{
              left:'inherit',
              right:-14,
-                background: `radial-gradient(circle at top right ,rgba(0,0,0,0) 15px, ${theme.palette.secondary.dark} 0)`
+                background: `radial-gradient(circle at top right ,rgba(0,0,0,0) 15px, ${theme.palette.primary.main} 0)`
             }
         }
     },
@@ -48,11 +48,7 @@ const useStyle = makeStyles((theme) => ({
     }
 }))
 
-function setMessageOwner(owner:string){
-    return owner === 'you' ? 'you' :'to'
-}
-
-const Comment:React.FC<MessageType> =(props) => {
+export const Comment:React.FC<MessageType> =(props) => {
     const classes = useStyle()
     return (
         <Grid item xs={12} className={clsx(classes.commentsItemContainer, {[classes.you]:props.owner === 'you'})}>
@@ -66,4 +62,14 @@ const Comment:React.FC<MessageType> =(props) => {
     )
 }
 
-export default Comment
+export type CommentPropsType = {
+    messages : MessageType[]
+}
+
+export const Comments:React.FC<CommentPropsType> = ({messages}) => {
+    return (
+        <Grid container direction='column' component={List} spacing={2}>
+            {messages.map(message => <Comment key={message.message+Math.random()} {...message}/>)}
+        </Grid>
+    )
+}

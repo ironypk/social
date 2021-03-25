@@ -1,8 +1,9 @@
 import React from 'react'
-import {ListItem, ListItemIcon, ListItemText} from '@material-ui/core'
+import {List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {NavLink} from 'react-router-dom';
 import InboxIcon from '@material-ui/icons/Inbox';
+import {RoutesType} from '../../../redux';
 
 const toolbarWidth = 200
 
@@ -22,11 +23,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export type NavbarLinkPropsType = {
+export type NavbarListItemPropsType = {
     title : string
 }
 
-export const NavbarLink:React.VFC<NavbarLinkPropsType> = ({title}) => {
+export const NavbarListItem:React.VFC<NavbarListItemPropsType> = ({title}) => {
     const classes = useStyles()
     return (
             <ListItem button className={classes.listItem} activeClassName={'Mui-selected'}
@@ -37,4 +38,14 @@ export const NavbarLink:React.VFC<NavbarLinkPropsType> = ({title}) => {
                 <ListItemText>{title}</ListItemText>
             </ListItem>
     )
+}
+
+export type NavbarListPropsType = {
+    routes : RoutesType[]
+}
+
+export  const NavbarList:React.VFC<NavbarListPropsType> = ({routes}) => {
+    return <List>
+        {routes.map(e => <NavbarListItem title={e.title} key={e.title}/>)}
+    </List>
 }

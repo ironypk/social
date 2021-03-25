@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Friends:React.FC<FriendsPropsType> = ({friends}) => {
+export const Friends:React.FC<FriendsPropsType> = ({friends}) => {
     const classes = useStyles()
     return <Grid container spacing={1} direction='row' className={classes.gridContainer}>
         {friends && friends.map(friend => {
@@ -27,5 +27,3 @@ const Friends:React.FC<FriendsPropsType> = ({friends}) => {
         })}
     </Grid>
 }
-
-export default Friends

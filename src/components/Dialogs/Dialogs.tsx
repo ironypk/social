@@ -1,7 +1,7 @@
 import React from 'react'
 import {Grid, List, makeStyles} from '@material-ui/core';
-import Dialog from './Dialog/Dialog';
-import Comment from './Comment/Comment'
+import {DialogList} from './DialogList/DialogList';
+import {Comments} from './Comments/Comments'
 import {DialogsPageType} from '../../redux';
 
 
@@ -12,23 +12,17 @@ const useStyle = makeStyles((theme) => ({
 }))
 
 
-const  Dialogs:React.FC<DialogsPageType> = (props) => {
+export const  Dialogs:React.FC<DialogsPageType> = ({dialogs,messages}) => {
     const classes = useStyle()
     return (
         <Grid container spacing={2}>
             <Grid item>
-                <Grid container direction='column' component={List}>
-                    {props.dialogs.map(dialog => <Dialog key={dialog.id} id={dialog.id} name={dialog.name}/>)}
-                </Grid>
+                <DialogList dialogs={dialogs}/>
             </Grid>
             <hr className={classes.divider}/>
             <Grid item xs={8}>
-                <Grid container direction='column' component={List} spacing={2}>
-                    {props.messages.map(message => <Comment key={message.message+Math.random()} {...message}/>)}
-                </Grid>
+                <Comments messages={messages}/>
             </Grid>
         </Grid>
     )
 }
-
-export default Dialogs

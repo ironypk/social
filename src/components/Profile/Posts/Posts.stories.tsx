@@ -1,16 +1,16 @@
 import React from 'react';
-import Posts, {ProfilePropsType} from './Posts';
+import {Posts as PostsComponent, ProfilePropsType} from './Posts';
 import {Story} from '@storybook/react';
 import {v1} from 'uuid';
 
 export default {
     title:'Profile/Posts',
-    component:Posts
+    component:PostsComponent
 }
 
-const Template:Story<ProfilePropsType> = (args) => <Posts {...args}/>
-export const WithPost = Template.bind({})
-WithPost.args = {
+const Template:Story<ProfilePropsType> = (args) => <PostsComponent {...args}/>
+export const Posts = Template.bind({})
+Posts.args = {
     posts:
         [{
         id: v1(),

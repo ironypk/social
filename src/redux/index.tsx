@@ -17,7 +17,7 @@ export type PostType = {
     message: string
 }
 export type MessageType = {
-    owner: string
+    owner: string | 'you'
     message: string
     avatar: string
 }

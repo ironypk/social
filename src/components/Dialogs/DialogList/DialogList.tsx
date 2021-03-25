@@ -1,4 +1,4 @@
-import {Grid, ListItem, ListItemText, makeStyles} from '@material-ui/core';
+import {Grid, List, ListItem, ListItemText, makeStyles} from '@material-ui/core';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {DialogType} from '../../../redux';
@@ -15,7 +15,7 @@ export const useStyle = makeStyles((theme) => ({
     }
 }))
 
-const Dialog: React.FC<DialogType> = (props) => {
+export const Dialog: React.FC<DialogType> = (props) => {
     const href = `/dialogs/${props.id}`
     const classes = useStyle()
     return (
@@ -30,4 +30,14 @@ const Dialog: React.FC<DialogType> = (props) => {
 
 }
 
-export default Dialog
+export type DialogListPropsType = {
+    dialogs : DialogType[]
+}
+
+export const DialogList:React.FC<DialogListPropsType> = ({dialogs}) => {
+    return (
+        <Grid container direction='column' component={List}>
+            {dialogs.map(dialog => <Dialog key={dialog.id} id={dialog.id} name={dialog.name}/>)}
+        </Grid>
+    )
+}

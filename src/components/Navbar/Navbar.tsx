@@ -1,11 +1,9 @@
 import React from 'react'
-import {Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar} from '@material-ui/core'
+import {Drawer, Toolbar} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {FriendType, RoutesType} from '../../redux';
-import Friends from './Friends/Friends';
-import {NavbarLink} from './NavbarLink/NavbarLink';
-import {NavLink} from 'react-router-dom';
-import InboxIcon from '@material-ui/icons/Inbox';
+import {Friends} from './Friends/Friends';
+import {NavbarList} from './NavbarList/NavbarList';
 
 const toolbarWidth = 200
 
@@ -32,17 +30,13 @@ export type NavbarPropsType = {
     friends?: FriendType[]
 }
 
-const Navbar:React.FC<NavbarPropsType>=(props)=> {
+export const Navbar:React.FC<NavbarPropsType>=({routes,friends})=> {
     const classes = useStyles()
     return (
         <Drawer variant="permanent" className={classes.drawer} classes={{paper: classes.drawerPaper}}>
             <Toolbar/>
-            <List>
-                {props.routes.map(e => <NavbarLink title={e.title} key={e.title}/>)}
-            </List>
-            <Friends friends={props.friends}/>
+            <NavbarList routes={routes}/>
+            <Friends friends={friends}/>
         </Drawer>
     )
 }
-
-export default Navbar

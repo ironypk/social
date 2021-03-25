@@ -37,7 +37,7 @@ const StyledBadge = withStyles(() => ({
 }))(Badge);
 
 
-const Post:React.FC<PostType> = (props) => {
+export const Post:React.FC<PostType> = (props) => {
     const classes = useStyles()
     return(
         <Card className={classes.root}>
@@ -58,5 +58,3 @@ const Post:React.FC<PostType> = (props) => {
         </Card>
     )
 }
-
-export default Post
