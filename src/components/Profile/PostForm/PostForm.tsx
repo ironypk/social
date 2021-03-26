@@ -1,5 +1,5 @@
 import {Box, Button, TextField} from '@material-ui/core';
-import React, {FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {deepPurple, grey} from '@material-ui/core/colors';
 
@@ -54,12 +54,15 @@ const useStyles = makeStyles(theme => ({
 
 type TextFieldComponentPropsType = {
     value : string
-    onChange: (title:string) => void
+    onChange: (message:string) => void
     autoFocus?:boolean
 }
 
 const TextFieldComponent:React.FC<TextFieldComponentPropsType> = ({value,onChange,...props}) => {
     const classes = useStyles()
+    function onChangeHandler (e:ChangeEvent<HTMLInputElement>){
+        onChange(e.currentTarget.value)
+    }
     return (
         <TextField
             id="outlined-multiline-static"
@@ -67,7 +70,7 @@ const TextFieldComponent:React.FC<TextFieldComponentPropsType> = ({value,onChang
             multiline
             rows={4}
             value={value}
-            onChange={(e)=>onChange(e.currentTarget.value)}
+            onChange={onChangeHandler}
             className={classes.root}
             InputLabelProps={{
                 shrink: true,
@@ -80,18 +83,22 @@ const TextFieldComponent:React.FC<TextFieldComponentPropsType> = ({value,onChang
     )
 }
 
+export type PostFormPropsType = {
+    newPostText : string
+    changeNewPostText : (message : string) => void
+    addPost: () => void
+}
 
-export const PostForm = () => {
+
+export const PostForm:React.FC<PostFormPropsType> = ({newPostText, changeNewPostText, addPost}) => {
     const classes = useStyles()
-    const [text,setText] = useState<string>('')
     function onSubmitHandler (e:FormEvent<HTMLFormElement>){
         e.preventDefault()
-        console.log(text)
-        setText('')
+        addPost()
     }
     return (
         <form className={classes.form} onSubmit={onSubmitHandler} >
-            <TextFieldComponent value={text} onChange={setText} autoFocus={true}/>
+            <TextFieldComponent value={newPostText} onChange={changeNewPostText} autoFocus={true}/>
             <Box className={classes.buttonWrap}>
                 <Button type='submit' color='primary' variant="contained">Отправить</Button>
             </Box>

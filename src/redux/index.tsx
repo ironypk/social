@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {rerender} from '../rerender';
 
 export type DialogType = {
     id: string,
@@ -28,6 +29,7 @@ export type DialogsPageType = {
 export type ProfilePageType = {
     posts: Array<PostType>
     profileInfo:ProfileInfoType
+    newPostText : string
 }
 
 export type FriendType = {
@@ -88,7 +90,8 @@ export const state: StateType = {
             city:'Москва',
             about:'Programmer',
             avatar:'И'
-        }
+        },
+        newPostText : ''
     },
     sideBar: {
         routes : [
@@ -151,3 +154,18 @@ export const state: StateType = {
     }
 }
 
+export const changeNewPostText = (message : string) => {
+    state.profilePage.newPostText = message
+    rerender(state)
+}
+
+export const addPost = () => {
+    const newPost:PostType = {
+        id:v1(),
+        message: state.profilePage.newPostText,
+        likes:0
+    }
+    state.profilePage.posts.push(newPost)
+    rerender(state)
+    state.profilePage.newPostText = ''
+}

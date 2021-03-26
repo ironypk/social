@@ -2,7 +2,11 @@ import React from 'react'
 import {Avatar, Box, Paper, Typography} from '@material-ui/core';
 import {ProfileInfoType} from '../../../redux';
 
-export const ProfileInfo: React.FC<ProfileInfoType> = ({fullName,avatar,about,city}) => {
+export type ProfileInfoPropsType = {
+    profileInfo : ProfileInfoType
+}
+
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profileInfo:{avatar,fullName,city,about}}) => {
     return (
         <Paper >
             <Box display='flex' alignItems='center' m={1} p={1}>

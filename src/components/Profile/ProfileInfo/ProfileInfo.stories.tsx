@@ -1,5 +1,5 @@
 import React from 'react';
-import {ProfileInfo as ProfileInfoComponent} from './ProfileInfo';
+import {ProfileInfo as ProfileInfoComponent, ProfileInfoPropsType} from './ProfileInfo';
 import {ProfileInfoType} from '../../../redux';
 import {Story} from '@storybook/react';
 
@@ -8,11 +8,13 @@ export default {
     component : ProfileInfoComponent
 }
 
-const Template:Story<ProfileInfoType> = (args) => <ProfileInfoComponent {...args}/>
+const Template:Story<ProfileInfoPropsType> = (args) => <ProfileInfoComponent {...args}/>
 export const ProfileInfo = Template.bind({})
 ProfileInfo.args = {
-    city:'Minsk',
-    fullName:'Bulba Konstantin',
-    about:"React programmer",
-    avatar:'К'
+    profileInfo : {
+        city:'Minsk',
+        fullName:'Bulba Konstantin',
+        about:"React programmer",
+        avatar:'К'
+    }
 }
