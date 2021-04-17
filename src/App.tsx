@@ -1,12 +1,11 @@
 import React from 'react';
-import Profile from './components/Profile/Profile';
 import {makeStyles} from '@material-ui/core/styles';
-import Dialogs from './components/Dialogs/Dialogs';
-import {Route} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import {Toolbar} from '@material-ui/core';
-import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
-import {StateType} from './redux';
+import {Header} from './components/Header/Header';
+import {ProfileContainer} from './components/Profile/ProfileContainer';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
+import {NavbarContainer} from './components/Navbar/NavbarContainer';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,18 +19,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const App: React.FC<StateType> = (props) => {
+const App = () => {
     const classes = useStyles()
     return (
         <div className={classes.root}>
             <Header/>
-            <Navbar routes={props.sideBar.routes} friends={props.sideBar.friends}/>
+            <NavbarContainer/>
             <main className={classes.content}>
                 <Toolbar/>
-                <Route path='/profile' exact render={() => <Profile posts={props.profilePage.posts}/>}/>
-                <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogsPage.dialogs}
-                                                              messages={props.dialogsPage.messages}/>}/>
-                <Route path='/' exact render={() => <Profile posts={props.profilePage.posts}/>}/>
+                <Switch>
+                    <Route path='/profile' exact render={() => <ProfileContainer/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    <Route path={'/'} exact render={() => <Redirect to='/profile'/>}/>
+                </Switch>
             </main>
         </div>
     )

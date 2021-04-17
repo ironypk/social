@@ -1,15 +1,19 @@
 import React from 'react'
-import Posts from './Posts/Posts';
-import ProfileInfo from './ProfileInfo';
-import {ProfilePageType} from '../../redux';
+import {Posts} from './Posts/Posts';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {Form} from '../Form/Form';
+import {ProfilePropsType} from './ProfileContainer';
 
-const Profile:React.FC<ProfilePageType>= (props) =>{
+
+export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profileInfo={props.profileInfo}/>
+            <Form title={props.title}
+                  newText={props.newText}
+                  changeFormText={props.changeNewPostText}
+                  sendForm={props.addPost}/>
             <Posts posts={props.posts}/>
         </div>
     )
 }
-
-export  default Profile
