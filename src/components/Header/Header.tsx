@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Avatar, Box, Toolbar} from '@material-ui/core'
+import {AppBar, Toolbar} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {Logo} from './Logo/Logo';
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export const Header:React.FC = () => {
+export const Header = () => {
     const classes = useStyles()
     return (
         <AppBar className={classes.appBar} position="fixed">

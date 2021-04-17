@@ -1,19 +1,18 @@
 import React from 'react'
 import {Posts} from './Posts/Posts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {ProfilePageType} from '../../redux';
-import {PostForm} from './PostForm/PostForm';
+import {Form} from '../Form/Form';
+import {ProfilePropsType} from './ProfileContainer';
 
-export type ProfilePropsType = {
-    changeNewPostText: (message:string) => void
-    addPost:()=>void
-}
 
-export const Profile:React.FC<ProfilePageType & ProfilePropsType>= ({changeNewPostText,addPost, ...props}) =>{
+export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div>
             <ProfileInfo profileInfo={props.profileInfo}/>
-            <PostForm newPostText={props.newPostText} changeNewPostText={changeNewPostText} addPost={addPost}/>
+            <Form title={props.title}
+                  newText={props.newText}
+                  changeFormText={props.changeNewPostText}
+                  sendForm={props.addPost}/>
             <Posts posts={props.posts}/>
         </div>
     )

@@ -1,6 +1,5 @@
 import React from 'react';
 import {ProfileInfo as ProfileInfoComponent, ProfileInfoPropsType} from './ProfileInfo';
-import {ProfileInfoType} from '../../../redux';
 import {Story} from '@storybook/react';
 
 export default {

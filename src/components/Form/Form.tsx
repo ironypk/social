@@ -1,5 +1,5 @@
 import {Box, Button, TextField} from '@material-ui/core';
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {deepPurple, grey} from '@material-ui/core/colors';
 
@@ -9,9 +9,9 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         marginBottom: 20,
-},
-    root : {
-        '& label':{
+    },
+    root: {
+        '& label': {
             textTransform: 'uppercase',
             fontSize: '1.5rem',
         },
@@ -53,20 +53,23 @@ const useStyles = makeStyles(theme => ({
 
 
 type TextFieldComponentPropsType = {
-    value : string
-    onChange: (message:string) => void
-    autoFocus?:boolean
+    value: string
+    changeFormText: (value: string) => void
+    autoFocus?: boolean
+    title: string
 }
 
-const TextFieldComponent:React.FC<TextFieldComponentPropsType> = ({value,onChange,...props}) => {
+const TextFieldComponent: React.FC<TextFieldComponentPropsType> = ({title, value, changeFormText, ...props}) => {
     const classes = useStyles()
-    function onChangeHandler (e:ChangeEvent<HTMLInputElement>){
-        onChange(e.currentTarget.value)
+
+    function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
+        changeFormText(e.currentTarget.value)
     }
+
     return (
         <TextField
             id="outlined-multiline-static"
-            label="Введите пост"
+            label={title}
             multiline
             rows={4}
             value={value}
@@ -84,21 +87,24 @@ const TextFieldComponent:React.FC<TextFieldComponentPropsType> = ({value,onChang
 }
 
 export type PostFormPropsType = {
-    newPostText : string
-    changeNewPostText : (message : string) => void
-    addPost: () => void
+    newText: string
+    title: string
+    changeFormText: (value: string) => void
+    sendForm: () => void
 }
 
 
-export const PostForm:React.FC<PostFormPropsType> = ({newPostText, changeNewPostText, addPost}) => {
+export const Form: React.FC<PostFormPropsType> = ({title, newText, sendForm, changeFormText}) => {
     const classes = useStyles()
-    function onSubmitHandler (e:FormEvent<HTMLFormElement>){
+
+    function onSubmitHandler(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        addPost()
+        sendForm()
     }
+
     return (
-        <form className={classes.form} onSubmit={onSubmitHandler} >
-            <TextFieldComponent value={newPostText} onChange={changeNewPostText} autoFocus={true}/>
+        <form className={classes.form} onSubmit={onSubmitHandler}>
+            <TextFieldComponent title={title} value={newText} changeFormText={changeFormText} autoFocus={true}/>
             <Box className={classes.buttonWrap}>
                 <Button type='submit' color='primary' variant="contained">Отправить</Button>
             </Box>

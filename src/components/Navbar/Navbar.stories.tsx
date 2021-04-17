@@ -1,10 +1,10 @@
 import React from 'react'
-import {Navbar as NavbarComponent, NavbarPropsType} from './Navbar';
+import {Navbar as NavbarComponent} from './Navbar';
 import {Story} from '@storybook/react';
 import {BrowserRouter} from 'react-router-dom';
 import * as NavbarListStories from './NavbarList/NavbarList.stories'
 import * as FriendsStories from './Friends/Friends.stories'
-import {v1} from 'uuid';
+import {NavbarPropsType} from './NavbarContainer';
 
 export default {
     title : 'Navbar/Navbar',

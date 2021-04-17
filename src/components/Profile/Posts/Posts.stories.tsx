@@ -1,5 +1,5 @@
 import React from 'react';
-import {Posts as PostsComponent, ProfilePropsType} from './Posts';
+import {Posts as PostsComponent, ProfilePostType} from './Posts';
 import {Story} from '@storybook/react';
 import {v1} from 'uuid';
 
@@ -8,7 +8,7 @@ export default {
     component:PostsComponent
 }
 
-const Template:Story<ProfilePropsType> = (args) => <PostsComponent {...args}/>
+const Template:Story<ProfilePostType> = (args) => <PostsComponent {...args}/>
 export const Posts = Template.bind({})
 Posts.args = {
     posts:

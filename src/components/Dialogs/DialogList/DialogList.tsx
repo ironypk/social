@@ -1,7 +1,7 @@
 import {Grid, List, ListItem, ListItemText, makeStyles} from '@material-ui/core';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import {DialogType} from '../../../redux';
+import {NavLink, useRouteMatch} from 'react-router-dom';
+import {DialogType} from '../../../redux/reducers/dialogsPageReducer';
 
 export const useStyle = makeStyles((theme) => ({
     dialogsItems: {
@@ -16,11 +16,11 @@ export const useStyle = makeStyles((theme) => ({
 }))
 
 export const Dialog: React.FC<DialogType> = (props) => {
-    const href = `/dialogs/${props.id}`
+    const match = useRouteMatch();
     const classes = useStyle()
     return (
         <Grid item className={classes.dialogsItems}>
-            <ListItem button component={NavLink} to={href} className={classes.item}>
+            <ListItem button component={NavLink} to={`${match.url}/${props.id}`} activeClassName={'Mui-selected'} className={classes.item}>
                 <ListItemText className={classes.text}>
                     {props.name}
                 </ListItemText>
@@ -34,7 +34,7 @@ export type DialogListPropsType = {
     dialogs : DialogType[]
 }
 
-export const DialogList:React.FC<DialogListPropsType> = ({dialogs}) => {
+export const DialogList:React.FC<DialogListPropsType> = ({dialogs,...restProps}) => {
     return (
         <Grid container direction='column' component={List}>
             {dialogs.map(dialog => <Dialog key={dialog.id} id={dialog.id} name={dialog.name}/>)}
