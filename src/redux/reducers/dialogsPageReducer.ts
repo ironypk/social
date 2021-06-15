@@ -1,8 +1,8 @@
 import {DIALOG1_ID, DIALOG2_ID, MY_ID} from '../types';
+import {DialogsEvents} from '../events';
 
 
-export type DialogPageActionsTypes = ReturnType<typeof changeNewDialogMessage>
-    | ReturnType<typeof addDialogMessage>
+export type DialogPageActionsTypes = ReturnType<typeof addDialogMessage>
 
 export type DialogType = {
     id: string,
@@ -53,8 +53,6 @@ const initialState = {
         ]
     } as MessagesType,
     my_ID: MY_ID,
-    newMessageText: '',
-    title: 'введите сообщение'
 }
 
 export type DialogsPageType = typeof initialState
@@ -62,34 +60,26 @@ export type DialogsPageType = typeof initialState
 
 const dialogPageReducer = (state: DialogsPageType = initialState, action: DialogPageActionsTypes): DialogsPageType => {
     switch (action.type) {
-        case 'ADD_DIALOG_MESSAGE':
-            const newMessage: MessageType = {
-                message: state.newMessageText,
-                avatar: 'Я',
-                id: MY_ID
-            }
-            return {
-                ...state,
-                messages: {...state.messages, [action.id]: [...state.messages[action.id], newMessage]},
-                newMessageText: ''
-            }
-        case 'CHANGE_NEW_DIALOG_MESSAGE':
-            return {...state, newMessageText: action.text}
+        case DialogsEvents.ADD_DIALOG_MESSAGE:
+                const newMessage: MessageType = {
+                    message: action.payload.messageValue,
+                    avatar: 'Я',
+                    id: MY_ID
+                }
+                return {
+                    ...state,
+                    messages: {...state.messages, [action.payload.dialogID]: [...state.messages[action.payload.dialogID], newMessage]},
+                }
+        default:
+            return state
     }
-    return state
 }
 
-export const changeNewDialogMessage = (text: string) => {
-    return {
-        type: 'CHANGE_NEW_DIALOG_MESSAGE',
-        text
-    } as const
-}
 
-export const addDialogMessage = (id: string) => {
+export const addDialogMessage = (payload:{dialogID:string,messageValue:string}) => {
     return {
-        type: 'ADD_DIALOG_MESSAGE',
-        id
+        type: DialogsEvents.ADD_DIALOG_MESSAGE,
+        payload
     } as const
 }
 

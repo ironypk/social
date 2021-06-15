@@ -23,6 +23,9 @@ const initialState = {
         {
             title: 'Friends',
         },
+        {
+            title:'Users'
+        }
     ] as Array<RouteType>,
     friends: [
         {
