@@ -8,8 +8,9 @@ import App from './App';
 import {Provider} from 'react-redux';
 
 
+
 ReactDOM.render(
-    <React.StrictMode>
+/*    <React.StrictMode>*/
         <BrowserRouter>
             <Provider store={store}>
                 <StylesProvider injectFirst>
@@ -18,7 +19,7 @@ ReactDOM.render(
                 </StylesProvider>
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>,
+/*    </React.StrictMode>*/,
     document.getElementById('root')
 )
 

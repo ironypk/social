@@ -18,7 +18,6 @@ const useStyle = makeStyles((theme) => ({
         margin: '0 0 0 5px',
         position: 'relative',
         background: theme.palette.primary.main,
-        opacity: '.5',
         color: '#fff',
         '&::after': {
             content: '""',
